@@ -14,7 +14,7 @@
 ---
 
 2. Conteúdo dos Arquivos YAML
-Cada arquivo terá sua própria configuração. Exemplo para `dev.yaml`:
+- Cada arquivo terá sua própria configuração. Exemplo para `dev.yaml`:
 ```yaml
 db:
   host: localhost
@@ -40,19 +40,19 @@ api:
 ---
 
 3. Configuração do `global.xml` com `Configuration Properties`
-No `global.xml`, configure o carregamento do arquivo apropriado:
+- No `global.xml`, configure o carregamento do arquivo apropriado:
 ```xml
 <configuration-properties
     doc:name="Propriedades por ambiente"
     file="config/${env}.yaml"
     format="yaml" />
 ```
-*Dica:* Aqui usamos `${env}` como variável para determinar o ambiente ativo.
+- *Dica:* Aqui usamos `${env}` como variável para determinar o ambiente ativo.
 
 ---
 
 4. Definir o Ambiente com Variável do Sistema
-Antes de iniciar a aplicação, você precisa definir a variável de ambiente para que o Mule saiba qual arquivo carregar.
+- Antes de iniciar a aplicação, você precisa definir a variável de ambiente para que o Mule saiba qual arquivo carregar.
 - No Windows:
 ```bash
 set env=dev
@@ -61,12 +61,12 @@ set env=dev
 ```bash
 export env=dev
 ```
-*Observação:* Substituir "dev" por "hml" ou "prod", conforme necessário.
+- *Observação:* Substituir "dev" por "hml" ou "prod", conforme necessário.
 
 ---
 
 5. Utilizar as Propriedades no Código Mule
-Dentro de seus flows, você pode acessar as propriedades via:
+- Dentro de seus flows, você pode acessar as propriedades via:
 ```xml
 <db:select config-ref="DB_Config" doc:name="Consulta">
     <db:sql>SELECT * FROM clientes WHERE cidade = '${db.host}'</db:sql>
@@ -99,16 +99,16 @@ output application/json
 ---
 
 7. Fazer os testes locais
-Para verificar se está funcionando em cada ambiente desejado, utilizando no Insomnia ou Postman:
-- Criar uma request do tipo GET, colocando o endereço: `localhost:8081' (somente, porque não coloquei um nome para o endpoint, declarei no código somente como "/")
-Ao rodar o teste, vai identificar o endpoint declarado, conforme o ambiente selecionado, configurado em `Global Configuration Elements`.
+- Para verificar se está funcionando em cada ambiente desejado, utilizando no Insomnia ou Postman:
+- Criar uma request do tipo GET, colocando o endereço: `localhost:8081` (somente, porque não coloquei um nome para o endpoint, declarei no código somente como "/").
+- Ao rodar o teste, vai identificar o endpoint declarado, conforme o ambiente selecionado, configurado em `Global Configuration Elements`.
 
 ---
 
 8. Fazer o deploy no Cloud Hub da Mulesoft (https://anypoint.mulesoft.com/cloudhub)
 
-*Observação*: Se não tiver uma conta, criar em: (https://anypoint.mulesoft.com/login/signin?).
+- **Observação**: Se não tiver uma conta, criar em: (https://anypoint.mulesoft.com/login/signin?).
 
-No primeiro teste que fizer, seguindo os parâmetros que foram configurados no teste local, mas diretamente na console, consegue identificar e testar, obtendo o mesmo resultado.
+- No primeiro teste que fizer, seguindo os parâmetros que foram configurados no teste local, mas diretamente na console, consegue identificar e testar, obtendo o mesmo resultado.
 
 ---
