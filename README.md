@@ -106,7 +106,7 @@ Ao rodar o teste, vai identificar o endpoint declarado, conforme o ambiente sele
 ---
 
 8. Fazer o deploy no Cloud Hub da Mulesoft (https://anypoint.mulesoft.com/cloudhub)
-*Observação*: Se não tiver uma conta, criar em: `https://anypoint.mulesoft.com/login/signin?`
+*Observação*: Se não tiver uma conta, criar em: (https://anypoint.mulesoft.com/login/signin?)
 No primeiro teste que fizer, seguindo os parâmetros que foram configurados no teste local, mas diretamente na console, consegue identificar e testar, obtendo o mesmo resultado.
 
 ---
