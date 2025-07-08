@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd"></mule>
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<configuration-properties doc:name="Configuration properties" doc:id="16d9a2cd-b44f-4c83-a98c-c8372c416845" file="${env}.config.yaml"/>
+	<global-property doc:name="Global Property" doc:id="011ef432-2069-4126-b98b-593836ce0fa7" name="env" value="dev"/>
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="8b94fcd6-781b-48dd-ac2e-3cac129f5c93" >
+		<http:listener-connection host="0.0.0.0" port="8081"/>
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="30b65d3a-cdb0-45c1-bf39-33c2d72eb8c4" >
+		<http:request-connection host="${webservice.url}" protocol="HTTPS"/>
+	</http:request-config>
+	<flow name="propriedades-e-ambientes-mulesoftFlow" doc:id="fd34537d-2691-4b04-81ba-10e62748715a" >
+		<http:listener doc:name="Listener" doc:id="6c49451a-be9a-4776-8d24-5e160dd341d7" config-ref="HTTP_Listener_config" path="/"/>
+		<http:request method="GET" doc:name="Request" doc:id="3fc9d32b-a82b-4d1d-91a0-a42fb1181ef0" config-ref="HTTP_Request_configuration" path="/${webservice.env}"/>
+	</flow>
+</mule>
